@@ -9,11 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-icons/all-files": "^4.1.0",
     "@tanstack/react-query": "^5.70.0",
     "next": "15.2.4",
     "next-svgr": "^0.0.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-youtube": "^10.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
