@@ -25,7 +25,9 @@ function Navigation() {
           <SearchIcon className="text-white w-[30px] h-[30px]" />
         </div>
         <div className="w-full flex items-center justify-center cursor-pointer">
-          <MyPageIcon className="text-white w-[30px] h-[30px]" />
+          <Link href="/auth">
+            <MyPageIcon className="text-white w-[30px] h-[30px]" />
+          </Link>
         </div>
       </div>
     </div>

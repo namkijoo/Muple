@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
+    "@react-oauth/google": "^0.12.1",
     "@tanstack/react-query": "^5.70.0",
     "next": "15.2.4",
     "next-svgr": "^0.0.2",

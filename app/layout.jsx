@@ -1,7 +1,8 @@
 "use client";
-import Navigation from "@/components/navigation/navigation.jsx";
+import Providers from "../providers";
+import Navigation from "../components/navigation/navigation";
 import "./globals.css";
-import Providers from "@/providers";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 // export const metadata = {
 //   title: "Create Next App",
@@ -12,12 +13,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Providers>
-          <div className="relative z-[9999] flex justify-center mx-auto max-w-[480px] h-screen overflow-auto bg-[#2b2a2a]">
-            {children}
-            <Navigation />
-          </div>
-        </Providers>
+        <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENTID}>
+          <Providers>
+            <div className="relative z-[9999] flex justify-center mx-auto max-w-[480px] h-screen overflow-auto bg-[#2b2a2a]">
+              {children}
+              <Navigation />
+            </div>
+          </Providers>
+        </GoogleOAuthProvider>
       </body>
     </html>
   );

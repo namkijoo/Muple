@@ -1,4 +1,4 @@
-import { getPlaylistItem } from "@/api/youtubeApi";
+import { getPlaylistItem } from "../../api/youtubeApi";
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FaAngleRight } from "@react-icons/all-files/fa/FaAngleRight";
@@ -7,6 +7,7 @@ import { FaPause } from "@react-icons/all-files/fa/FaPause";
 import { FaPlay } from "@react-icons/all-files/fa/FaPlay";
 import YouTube from "react-youtube";
 import ListIcon from "../icons/listIcon";
+import MusicList from "./musiList";
 
 function MusicPlayer() {
   const [currentAudioIndex, setCurrentAudioIndex] = useState(0);
@@ -14,6 +15,7 @@ function MusicPlayer() {
   const [progress, setProgress] = useState(0);
   const playerRef = useRef(null);
   const intervalRef = useRef(null);
+  const [position, setPosition] = useState(true);
 
   //데이터 받아오기
   const { data, isLoading, error } = useQuery({
@@ -124,9 +126,7 @@ function MusicPlayer() {
           style={{ width: `${progress}%` }}
         ></div>
       </div>
-
       <div className="h-full w-full flex py-[5px] px-[20px] transition-all duration-100 ease-in-out">
-        {/* ✅ 로딩 중일 때 */}
         {isLoading ? (
           <div className="text-white flex items-center justify-center w-full">
             로딩 중...
@@ -138,12 +138,12 @@ function MusicPlayer() {
         ) : Array.isArray(data) && data.length > 0 ? (
           <>
             <YouTube
-              key={currentAudioIndex}
+              key="youtube-player"
               videoId={data[currentAudioIndex].snippet.resourceId.videoId}
               opts={{
                 playerVars: { autoplay: 1 },
               }}
-              style={{ display: "none" }}
+              className="hidden"
               onReady={onPlayerReady}
               onEnd={onPlayerEnd}
             />
@@ -178,7 +178,10 @@ function MusicPlayer() {
                 className="text-white text-xl mx-[10px] cursor-pointer"
                 onClick={playNextAudio}
               />
-              <ListIcon className="w-[25px] h-[25px] text-white text-xl mt-[2px] cursor-pointer" />
+              <ListIcon
+                className="w-[25px] h-[25px] text-white text-xl mt-[2px] cursor-pointer"
+                onClick={() => setPosition(!position)}
+              />
             </div>
           </>
         ) : (
@@ -187,6 +190,11 @@ function MusicPlayer() {
           </div>
         )}
       </div>
+      <MusicList
+        prop={Array.isArray(data) && data.length > 0 ? data : ""}
+        currentAudioIndex={currentAudioIndex}
+        className={position ? "hidden" : "flex"}
+      />
     </div>
   );
 }
