@@ -28,10 +28,10 @@ function Login() {
       className="w-full flex items-center justify-center cursor-pointer"
       style={{ height: "calc(100vh - 130px)" }}
     >
-      <div className="flex flex-col justify-center items-center font-[15px] box-border">
+      <div className="flex flex-col justify-center items-center text-[15px] box-border">
         <div className="flex justify-center items-center">
           <button
-            className="font-[15px] text-center p-[2px] cursor-pointer rounded-[5px] bg-amber-50 flex justify-center items-center"
+            className="text-[15px] text-center p-[2px] cursor-pointer rounded-[5px] bg-amber-50 flex justify-center items-center"
             type="button"
             onClick={isLoggedIn ? logout : login}
           >
@@ -39,7 +39,7 @@ function Login() {
             {isLoggedIn ? "로그아웃" : "로그인(Click)"}
           </button>
         </div>
-        <span className="font-[12px] mt-[15px] text-[#2693bb]">
+        <span className="text-[12px] mt-[15px] text-[#2693bb]">
           {isLoggedIn ? "" : "로그인시 음악 검색, 추가, 삭제가 가능해집니다."}
         </span>
       </div>

@@ -1,4 +1,5 @@
 import { MdDelete } from "@react-icons/all-files/md/MdDelete";
+import Image from "next/image";
 
 const MusicList = ({ prop, className, currentAudioIndex }) => {
   if (!Array.isArray(prop) || prop.length === 0) {
@@ -7,7 +8,7 @@ const MusicList = ({ prop, className, currentAudioIndex }) => {
 
   return (
     <div
-      className={`${className} fixed top-0 px-[20px] pt-[20px] max-w-[480px] w-full overflow-auto flex-col`}
+      className={`${className} fixed top-0 px-[20px] pt-[20px] max-w-[480px] w-full overflow-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] flex-col`}
       style={{
         height: "calc(100vh - 130px)",
         background: "linear-gradient(to bottom, #0c0c0c, #454546, #939292)",
@@ -22,12 +23,16 @@ const MusicList = ({ prop, className, currentAudioIndex }) => {
             className={`p-[5px] relative flex text-white cursor-pointer ${
               currentAudioIndex === key ? "border border-gray-300" : ""
             }`}
+            key={key}
           >
-            <img
+            <Image
               src={element?.snippet?.thumbnails?.default?.url || ""}
+              alt="thumbnail"
+              width={50}
+              height={50}
               className="h-[50px] w-[50px]"
             />
-            <div className="flex flex-col justify-center ">
+            <div className="flex flex-col justify-center max-w-[80%]">
               <span className="text-[12px] ml-[10px]">
                 {element?.snippet?.title?.length > 40
                   ? element?.snippet?.title.slice(0, 40) + "..."

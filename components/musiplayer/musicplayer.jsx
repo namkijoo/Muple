@@ -17,14 +17,14 @@ function MusicPlayer() {
   const intervalRef = useRef(null);
   const [position, setPosition] = useState(true);
 
-  //데이터 받아오기
+  // 데이터 받아오기
   const { data, isLoading, error } = useQuery({
     queryKey: ["playlist"],
     queryFn: getPlaylistItem,
     staleTime: 1000 * 60 * 5,
   });
 
-  //음악 진행도 업데이트
+  // 음악 진행도 업데이트
   useEffect(() => {
     if (playerRef.current && isPlaying) {
       intervalRef.current = setInterval(updateProgress, 1000);
@@ -34,7 +34,7 @@ function MusicPlayer() {
     return () => clearInterval(intervalRef.current);
   }, [isPlaying, currentAudioIndex]);
 
-  //음악 이전, 다음, 멈춤 기능능
+  // 음악 이전, 다음, 멈춤 기능
   const playNextAudio = useCallback(() => {
     if (!data || data.length === 0) return;
     setCurrentAudioIndex((prevIndex) =>
@@ -49,7 +49,8 @@ function MusicPlayer() {
     );
   }, [data]);
 
-  const togglePlayPause = () => {
+  const togglePlayPause = (e) => {
+    e.stopPropagation();
     if (isPlaying) {
       playerRef.current.pauseVideo();
     } else {
@@ -58,16 +59,14 @@ function MusicPlayer() {
     setIsPlaying((prevState) => !prevState);
   };
 
-  //음악 로드 되면 재생
+  // 음악 로드 되면 재생
   const onPlayerReady = (event) => {
     playerRef.current = event.target;
-
     playerRef.current.addEventListener("onStateChange", onPlayerStateChange);
-
     playerRef.current.playVideo();
   };
 
-  //음악 재생 상태 확인인
+  // 음악 재생 상태 확인
   const onPlayerStateChange = (event) => {
     if (event.data === YT.PlayerState.PLAYING) {
       setIsPlaying(true);
@@ -79,13 +78,14 @@ function MusicPlayer() {
     }
   };
 
-  //음악 끝날시에 다음 음악 재생생
+  // 음악 끝날 시 다음 음악 재생
   const onPlayerEnd = () => {
     playNextAudio();
   };
 
-  //프로그레스바 업데이트 및 동적 선택택
+  // 프로그레스바 업데이트 및 동적 선택
   const onProgressBarClick = (e) => {
+    e.stopPropagation();
     if (playerRef.current) {
       const rect = e.target.getBoundingClientRect();
       const clickPosition = e.clientX - rect.left;
@@ -104,7 +104,6 @@ function MusicPlayer() {
     ) {
       const currentTime = playerRef.current.getCurrentTime();
       const duration = playerRef.current.getDuration();
-
       if (duration > 0) {
         setProgress((currentTime / duration) * 100);
       }
@@ -116,11 +115,12 @@ function MusicPlayer() {
   }, []);
 
   return (
-    <div
-      className="h-[60px] flex w-full bg-[#212020] border-t border-[#313030]"
-      onClick={onProgressBarClick}
-    >
-      <div className="h-[3px] w-full bg-[#e0e0e0] absolute top-0 cursor-pointer rounded-[5px]">
+    <div className="h-[60px] flex w-full bg-[#212020] border-t border-[#313030]">
+      {/* 프로그레스바에만 onClick 적용 */}
+      <div
+        className="h-[3px] w-full bg-[#e0e0e0] absolute top-0 cursor-pointer rounded-[5px]"
+        onClick={onProgressBarClick}
+      >
         <div
           className="bg-[#3b5998] h-full transition-all duration-100 ease-in-out"
           style={{ width: `${progress}%` }}
@@ -148,20 +148,32 @@ function MusicPlayer() {
               onEnd={onPlayerEnd}
             />
             <div className="flex h-full w-[70%] flex-col justify-center">
-              <span className="text-white">
-                {data[currentAudioIndex].snippet.title.length > 25
-                  ? data[currentAudioIndex].snippet.title.slice(0, 25) + "..."
-                  : data[currentAudioIndex].snippet.title}
-              </span>
-              <span className="text-white text-[12px]">
-                {data[currentAudioIndex].snippet.videoOwnerChannelTitle}
-              </span>
+              {isLoading ? (
+                <>
+                  <div className="w-[200px] h-[18px] bg-gray-600 animate-pulse rounded mb-1" />
+                  <div className="w-[150px] h-[14px] bg-gray-700 animate-pulse rounded" />
+                </>
+              ) : (
+                <>
+                  <span className="text-white text-sm font-medium truncate max-w-[200px]">
+                    {data[currentAudioIndex].snippet.title.length > 25
+                      ? data[currentAudioIndex].snippet.title.slice(0, 25) +
+                        "..."
+                      : data[currentAudioIndex].snippet.title}
+                  </span>
+                  <span className="text-white text-[12px] truncate max-w-[150px]">
+                    {data[currentAudioIndex].snippet.videoOwnerChannelTitle}
+                  </span>
+                </>
+              )}
             </div>
-
             <div className="flex items-center justify-center h-full">
               <FaAngleLeft
                 className="text-white text-xl cursor-pointer mx-[10px]"
-                onClick={playPrevAudio}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  playPrevAudio();
+                }}
               />
               {isPlaying ? (
                 <FaPause
@@ -176,11 +188,17 @@ function MusicPlayer() {
               )}
               <FaAngleRight
                 className="text-white text-xl mx-[10px] cursor-pointer"
-                onClick={playNextAudio}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  playNextAudio();
+                }}
               />
               <ListIcon
                 className="w-[25px] h-[25px] text-white text-xl mt-[2px] cursor-pointer"
-                onClick={() => setPosition(!position)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setPosition(!position);
+                }}
               />
             </div>
           </>

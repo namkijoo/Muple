@@ -22,7 +22,9 @@ function Navigation() {
           </Link>
         </div>
         <div className="w-full flex items-center justify-center cursor-pointer">
-          <SearchIcon className="text-white w-[30px] h-[30px]" />
+          <Link href="/search">
+            <SearchIcon className="text-white w-[30px] h-[30px]" />
+          </Link>
         </div>
         <div className="w-full flex items-center justify-center cursor-pointer">
           <Link href="/auth">
