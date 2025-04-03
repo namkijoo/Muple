@@ -1,7 +1,13 @@
 import { MdDelete } from "@react-icons/all-files/md/MdDelete";
 import Image from "next/image";
 
-const MusicList = ({ prop, className, currentAudioIndex }) => {
+const MusicList = ({
+  prop,
+  className,
+  currentAudioIndex,
+  onClickMusicList,
+  onDeleteBtnClick,
+}) => {
   if (!Array.isArray(prop) || prop.length === 0) {
     return <div className={className}>표시할 음악이 없습니다.</div>;
   }
@@ -24,6 +30,7 @@ const MusicList = ({ prop, className, currentAudioIndex }) => {
               currentAudioIndex === key ? "border border-gray-300" : ""
             }`}
             key={key}
+            onClick={() => onClickMusicList(key)}
           >
             <Image
               src={element?.snippet?.thumbnails?.default?.url || ""}
@@ -46,7 +53,13 @@ const MusicList = ({ prop, className, currentAudioIndex }) => {
                     "채널 정보 없음"}
               </span>
             </div>
-            <MdDelete className="absolute right-2 top-[50%] transform -translate-y-1/2 cursor-pointer" />
+            <MdDelete
+              className="absolute right-2 top-[50%] transform -translate-y-1/2 cursor-pointer"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDeleteBtnClick(element.id);
+              }}
+            />
           </div>
         ))}
     </div>

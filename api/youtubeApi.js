@@ -84,3 +84,27 @@ export const postMusicList = async (videoId) => {
     console.error("Error posting to YouTube playlist:", error);
   }
 };
+
+export const deleteMusicList = async (playlistItemId) => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/playlistItems?id=${playlistItemId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.status === 204) {
+      return { success: true, message: "Item deleted successfully" };
+    } else {
+      return { success: false, message: "Failed to delete item" };
+    }
+  } catch (error) {
+    console.error(error);
+    return { success: false, message: "An error occurred" };
+  }
+};

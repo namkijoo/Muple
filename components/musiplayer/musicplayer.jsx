@@ -1,4 +1,4 @@
-import { getPlaylistItem } from "../../api/youtubeApi";
+import { deleteMusicList, getPlaylistItem } from "../../api/youtubeApi";
 import { useQuery } from "@tanstack/react-query";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FaAngleRight } from "@react-icons/all-files/fa/FaAngleRight";
@@ -18,7 +18,7 @@ function MusicPlayer() {
   const [position, setPosition] = useState(true);
 
   // 데이터 받아오기
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["playlist"],
     queryFn: getPlaylistItem,
     staleTime: 1000 * 60 * 5,
@@ -113,6 +113,34 @@ function MusicPlayer() {
   const onClickMusicList = useCallback((index) => {
     setCurrentAudioIndex(index);
   }, []);
+
+  const onDeleteBtnClick = async (playlistItemId) => {
+    if (!localStorage.getItem("token")) {
+      alert("로그인 후 삭제가능합니다. ");
+    } else {
+      const confirmDelete = window.confirm("정말로 삭제하시겠습니까?");
+
+      if (confirmDelete) {
+        try {
+          const result = await deleteMusicList(playlistItemId);
+
+          if (result.success) {
+            alert("삭제되었습니다.");
+            setTimeout(async () => {
+              await refetch();
+            }, 1000);
+          } else {
+            alert(`삭제하는데 실패했습니다. ${result.message}`);
+          }
+        } catch (error) {
+          alert(`삭제하는데 실패했습니다. ${result.message}`);
+          console.error("삭제 중 에러 발생: ", error);
+        }
+      } else {
+        alert("삭제가 취소되었습니다.");
+      }
+    }
+  };
 
   return (
     <div className="h-[60px] flex w-full bg-[#212020] border-t border-[#313030]">
@@ -212,6 +240,8 @@ function MusicPlayer() {
         prop={Array.isArray(data) && data.length > 0 ? data : ""}
         currentAudioIndex={currentAudioIndex}
         className={position ? "hidden" : "flex"}
+        onClickMusicList={onClickMusicList}
+        onDeleteBtnClick={onDeleteBtnClick}
       />
     </div>
   );
