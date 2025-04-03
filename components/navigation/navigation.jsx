@@ -23,12 +23,20 @@ function Navigation() {
         </div>
         <div className="w-full flex items-center justify-center cursor-pointer">
           <Link href="/search">
-            <SearchIcon className="text-white w-[30px] h-[30px]" />
+            <SearchIcon
+              className={`w-[30px] h-[30px] ${
+                pathName === "/search" ? "text-[#2693bb]" : "text-white"
+              }`}
+            />
           </Link>
         </div>
         <div className="w-full flex items-center justify-center cursor-pointer">
           <Link href="/auth">
-            <MyPageIcon className="text-white w-[30px] h-[30px]" />
+            <MyPageIcon
+              className={`w-[30px] h-[30px] ${
+                pathName === "/auth" ? "text-[#2693bb]" : "text-white"
+              }`}
+            />
           </Link>
         </div>
       </div>

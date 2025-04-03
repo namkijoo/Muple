@@ -199,7 +199,24 @@ function Search() {
             </div>
           ))
         ) : (
-          <div className="text-white mt-5">검색 결과가 없습니다.</div>
+          <div className="text-[lightgray] mt-[100px] text-center">
+            <div>
+              <h4 className="text-[20px] mb-[10px] text-[#9bb1b9]">
+                인기 검색어:
+              </h4>
+              <ul className="line-clamp-none p-0">
+                <li className="m-x-[5px] cursor-pointer text-[gray] hover:text-[white]">
+                  #Billboard
+                </li>
+                <li className="m-x-[5px] cursor-pointer text-[gray] hover:text-[white]">
+                  #KPop
+                </li>
+                <li className="m-x-[5px] cursor-pointer text-[gray] hover:text-[white]">
+                  #TopHits
+                </li>
+              </ul>
+            </div>
+          </div>
         )}
       </div>
     </div>
