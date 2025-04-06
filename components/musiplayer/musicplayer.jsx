@@ -183,9 +183,9 @@ function MusicPlayer() {
                 </>
               ) : (
                 <>
-                  <span className="text-white text-sm font-medium truncate max-w-[200px]">
-                    {data[currentAudioIndex].snippet.title.length > 25
-                      ? data[currentAudioIndex].snippet.title.slice(0, 25) +
+                  <span className="text-white text-sm font-medium truncate max-w-[250px]">
+                    {data[currentAudioIndex].snippet.title.length > 40
+                      ? data[currentAudioIndex].snippet.title.slice(0, 40) +
                         "..."
                       : data[currentAudioIndex].snippet.title}
                   </span>

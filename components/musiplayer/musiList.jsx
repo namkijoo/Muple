@@ -14,7 +14,7 @@ const MusicList = ({
 
   return (
     <div
-      className={`${className} fixed top-0 px-[20px] pt-[20px] max-w-[480px] w-full overflow-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] flex-col`}
+      className={`${className} z-999 fixed top-0 px-[20px] pt-[20px] max-w-[480px] w-full overflow-scroll [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] flex-col`}
       style={{
         height: "calc(100vh - 130px)",
         background: "linear-gradient(to bottom, #0c0c0c, #454546, #939292)",

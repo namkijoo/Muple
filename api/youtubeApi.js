@@ -108,3 +108,26 @@ export const deleteMusicList = async (playlistItemId) => {
     return { success: false, message: "An error occurred" };
   }
 };
+
+export const getTopMusic = async () => {
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=KR&maxResults=10&videoCategoryId=10&key=${process.env.NEXT_PUBLIC_YOUTUBE_API_KEY}`
+    );
+
+    if (!response.ok) {
+      throw new Error("네트워크 응답에 문제가 있습니다");
+    }
+
+    const data = await response.json();
+
+    return data.items.map((item) => ({
+      title: item.snippet.title,
+      artist: item.snippet.channelTitle,
+      imgUrl: item.snippet.thumbnails?.medium?.url,
+    }));
+  } catch (error) {
+    console.error("API 호출 중 오류 발생:", error);
+    return [];
+  }
+};
