@@ -9,6 +9,8 @@ function Login() {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
+
+  //클라이언트에서 로그인 구현현
   const login = useGoogleLogin({
     flow: "implicit", // 'auth-code' 대신 'implicit' 플로우 사용
     onSuccess: (tokenResponse) => {
@@ -18,6 +20,8 @@ function Login() {
     onError: (errorResponse) => console.log(errorResponse),
     scope: process.env.NEXT_PUBLIC_YOUTUBE_SCOPE,
   });
+
+  //로그아웃 하면서 토큰 삭제
   const logout = () => {
     localStorage.removeItem("token");
     alert("로그아웃 되었습니다. ");

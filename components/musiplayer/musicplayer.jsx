@@ -144,7 +144,6 @@ function MusicPlayer() {
 
   return (
     <div className="h-[60px] flex w-full bg-[#212020] border-t border-[#313030]">
-      {/* 프로그레스바에만 onClick 적용 */}
       <div
         className="h-[3px] w-full bg-[#e0e0e0] absolute top-0 cursor-pointer rounded-[5px]"
         onClick={onProgressBarClick}
