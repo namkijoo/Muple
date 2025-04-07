@@ -6,7 +6,7 @@ import { BiUserCircle } from "@react-icons/all-files/bi/BiUserCircle";
 function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
 
@@ -14,7 +14,7 @@ function Login() {
   const login = useGoogleLogin({
     flow: "implicit", // 'auth-code' 대신 'implicit' 플로우 사용
     onSuccess: (tokenResponse) => {
-      localStorage.setItem("token", tokenResponse.access_token);
+      sessionStorage.setItem("token", tokenResponse.access_token);
       setIsLoggedIn(true);
     },
     onError: (errorResponse) => console.log(errorResponse),
@@ -23,7 +23,7 @@ function Login() {
 
   //로그아웃 하면서 토큰 삭제
   const logout = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     alert("로그아웃 되었습니다. ");
     setIsLoggedIn(false);
   };

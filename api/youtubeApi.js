@@ -56,7 +56,7 @@ export const getSearchMusicList = async (searchTerm) => {
 
 //검색한 음악 추가, 토큰 필요
 export const postMusicList = async (videoId) => {
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
   try {
     const response = await fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&key=${process.env.NEXT_PUBLIC_YOUTUBE_PLAYLIST_KEY}`,
@@ -91,7 +91,7 @@ export const postMusicList = async (videoId) => {
 //음악 삭제, 토큰 필요
 export const deleteMusicList = async (playlistItemId) => {
   try {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     const response = await fetch(
       `https://www.googleapis.com/youtube/v3/playlistItems?id=${playlistItemId}`,
       {
