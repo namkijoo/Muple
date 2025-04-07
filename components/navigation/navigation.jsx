@@ -17,7 +17,8 @@ function Navigation() {
             <HomeIcon
               className={`w-[30px] h-[30px] ${
                 pathName === "/" ? "text-[#2693bb]" : "text-white"
-              }`}
+              } `}
+              aria-label="홈"
             />
           </Link>
         </div>
@@ -27,6 +28,7 @@ function Navigation() {
               className={`w-[30px] h-[30px] ${
                 pathName === "/search" ? "text-[#2693bb]" : "text-white"
               }`}
+              aria-label="검색색"
             />
           </Link>
         </div>
@@ -36,6 +38,7 @@ function Navigation() {
               className={`w-[30px] h-[30px] ${
                 pathName === "/auth" ? "text-[#2693bb]" : "text-white"
               }`}
+              aria-label="로그인"
             />
           </Link>
         </div>
