@@ -3,11 +3,13 @@ import "./globals.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Providers from "../providers";
 import Navigation from "../components/navigation/navigation";
-import { Suspense } from "react";
 
 export const metadata = {
-  title: "My App",
-  description: "My cool app description",
+  title: {
+    template: "%s | Muple",
+    default: "Loading...",
+  },
+  description: "유튜브를 통한 음악 플레이어 입니다.",
 };
 
 export default function RootLayout({ children }) {

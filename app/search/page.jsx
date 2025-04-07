@@ -1,5 +1,4 @@
 "use client";
-
 import { FaSearch } from "@react-icons/all-files/fa/FaSearch";
 import { useState } from "react";
 import { getSearchMusicList, postMusicList } from "../../api/youtubeApi";
