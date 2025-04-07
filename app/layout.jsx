@@ -3,17 +3,13 @@ import "./globals.css";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Providers from "../providers";
 import Navigation from "../components/navigation/navigation";
-import { Noto_Sans_KR } from "next/font/google";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "My App",
   description: "My cool app description",
 };
 
-const notoSans = Noto_Sans_KR({
-  subsets: ["latin"],
-  display: "swap", // ← 중요!
-});
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
