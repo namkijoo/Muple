@@ -35,7 +35,7 @@ jobs:
       - name: Deploy to Vercel
         uses: amondnet/vercel-action@v20
         with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }} # Vercel Personal Access Token
+          vercel-token: ${{ secrets.TOKEN }} # Vercel Personal Access Token
           vercel-args: '--prod --yes'
           working-directory: ./ # 배포할 디렉터리 (프로젝트 루트 기준)
           vercel-project-name: 'muple'
