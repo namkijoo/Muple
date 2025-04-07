@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # # 4. 테스트 실행 (선택 사항: 테스트가 없다면 생략 가능)
+      # # 4. 테스트 실행 (선택 사항: 테스트가 없다면 생략 가능 )
       # - name: Run Tests
       #   run: npm test
 
