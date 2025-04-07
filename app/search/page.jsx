@@ -19,6 +19,7 @@ function Search() {
 
   const queryClient = useQueryClient();
 
+  //usequery사용해서 데이터 가져오기, 로딩, refetch사용
   const {
     data = [],
     refetch,
@@ -26,42 +27,48 @@ function Search() {
   } = useQuery({
     queryKey: ["getSearchMusicList"],
     queryFn: () => getSearchMusicList(searchTerm),
-    enabled: fetchData && searchTerm.length > 0,
+    enabled: fetchData && searchTerm.length > 0, //충족할때만 데이터 가져오기
     refetchOnWindowFocus: true,
   });
 
+  // usemutation사용해서 데이터 추가가
   const { mutate } = useMutation({
     mutationFn: (videoId) => postMusicList(videoId),
     onSuccess: () => {
       alert("추가 되었습니다.");
-      queryClient.invalidateQueries("getPlaylistItem");
+      queryClient.invalidateQueries("getPlaylistItem"); //삭제하고 데이터 다시 불러오도록록
     },
     onError: () => {
       alert("잠시 후 다시 시도해주세요.");
     },
   });
 
+  //input의value onchange
   const onChangeSearch = (e) => {
     setSearchTerm(e.target.value);
   };
 
+  //검색클릭했을때
   const handleSearchClick = () => {
     setFetchData(true);
     refetch();
   };
 
+  //엔터로 검색
   const handleEnter = (e) => {
     if (e.key === "Enter") {
       handleSearchClick();
     }
   };
 
+  //검색한 음악 재생생
   const onClickMusicList = (index, videoId) => {
     setCurrentAudioIndex(index);
     setVideoId(videoId);
     setIsPlaying(true);
   };
 
+  //음악 추가 버튼 클릭 후 confirm
   const addOnClick = async (videoId) => {
     if (!localStorage.getItem("token")) {
       alert("로그인 후 추가해주세요. ");
@@ -79,6 +86,7 @@ function Search() {
     }
   };
 
+  //음악 재생 멈추기기
   const togglePlayPause = () => {
     if (isPlaying) {
       player.pauseVideo();
@@ -88,6 +96,7 @@ function Search() {
     setIsPlaying(!isPlaying);
   };
 
+  //음악 onready됐을때때
   const onPlayerReady = (event) => {
     setPlayer(event.target);
   };
@@ -98,6 +107,7 @@ function Search() {
     },
   };
 
+  //제목중 검색한 단어 포함 색 바꾸기
   const highlightSearchTerm = (title) => {
     if (!searchTerm) return title;
     const regex = new RegExp(`(${searchTerm})`, "gi");
