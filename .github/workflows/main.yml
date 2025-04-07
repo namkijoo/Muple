@@ -8,9 +8,11 @@ on:
     branches:
       - main # main 브랜치 대상 PR 생성 시 실행
 
-jobs:
+ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    environment: Token   # ← 여기를 추가해야 Environment secrets(TOKEN)에 접근 가능!
+
 
     steps:
       # 1. GitHub 저장소 클론
