@@ -17,6 +17,7 @@ export default function Home() {
           height={100}
           alt="로고"
           className="text-left"
+          priority
         />
       </div>
       <TopMusic />
