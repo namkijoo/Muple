@@ -1,3 +1,4 @@
+//유튜브의 재생목록 가져오기, 최대 50개까지
 export const getPlaylistItem = async () => {
   try {
     const params = new URLSearchParams({
@@ -24,6 +25,7 @@ export const getPlaylistItem = async () => {
   }
 };
 
+//유튜브에서 검색하기, 뮤직 카테고리, 10개 제한
 export const getSearchMusicList = async (searchTerm) => {
   const params = new URLSearchParams({
     part: "snippet",
@@ -52,6 +54,7 @@ export const getSearchMusicList = async (searchTerm) => {
   }
 };
 
+//검색한 음악 추가, 토큰 필요
 export const postMusicList = async (videoId) => {
   const token = localStorage.getItem("token");
   try {
@@ -85,6 +88,7 @@ export const postMusicList = async (videoId) => {
   }
 };
 
+//음악 삭제, 토큰 필요
 export const deleteMusicList = async (playlistItemId) => {
   try {
     const token = localStorage.getItem("token");
@@ -109,6 +113,7 @@ export const deleteMusicList = async (playlistItemId) => {
   }
 };
 
+//인기 음악 가져오기 10개
 export const getTopMusic = async () => {
   try {
     const response = await fetch(
