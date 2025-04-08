@@ -1,7 +1,7 @@
 ## 프로젝트 소개 - 음플(음악 플레이어)
 유튜브 재생목록을 통한 무료 음악 플레이어를 사용할 수 있습니다! </br>
 비용없이, 유튜브 재생목록을 들어가야하는 수고로움을 덜기 위해 개발하였습니다. </br>
-바로가기 : https://muple-7xy5lij8d-namkijoos-projects.vercel.app/
+바로가기 : https://muple.vercel.app/
 
 ## 기술스택
 <div align=center> 
