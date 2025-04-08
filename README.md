@@ -1,7 +1,7 @@
 ## 프로젝트 소개 - 음플(음악 플레이어)
 유튜브 재생목록을 통한 무료 음악 플레이어를 사용할 수 있습니다! </br>
 비용없이, 유튜브 재생목록을 들어가야하는 수고로움을 덜기 위해 개발하였습니다. </br>
-바로가기 : https://nkj-player.vercel.app/
+바로가기 : https://muple-7xy5lij8d-namkijoos-projects.vercel.app/
 
 ## 기술스택
 <div align=center> 
@@ -18,7 +18,7 @@
 
 ## 기능
 ### 음악 추천 및 재생
-![image](https://github.com/user-attachments/assets/0dd4f05b-904f-47bd-9812-74f935ef52bb)
+![image](https://github.com/user-attachments/assets/df8064d0-f442-4822-b8ba-1af381ad7614)
 
 ### 음악 재생 목록 및 선택
 ![image](https://github.com/user-attachments/assets/72848004-d4e0-4b0f-9f30-3d8dbd0cb347)
