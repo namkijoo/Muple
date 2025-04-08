@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 프로젝트 소개 - 음플(음악 플레이어)
+유튜브 재생목록을 통한 무료 음악 플레이어를 사용할 수 있습니다! </br>
+비용없이, 유튜브 재생목록을 들어가야하는 수고로움을 덜기 위해 개발하였습니다. </br>
+바로가기 : https://nkj-player.vercel.app/
 
-## Getting Started
+## 기술스택
+<div align=center> 
+  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=white"> 
+  <img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
+  <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white"> 
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"/>
+  <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"/>
+  <br>
+  <img src="https://img.shields.io/badge/reactrouer-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white"/>
+  <img src="https://img.shields.io/badge/styledComponents-DB7093?style=for-the-badge&logo=styledComponents&logoColor=white"/>
+  <img src="https://img.shields.io/badge/reactQuery-FF4154?style=for-the-badge&logo=reactQuery&logoColor=white"/>
+</div>
 
-First, run the development server:
+## 기능
+### 음악 추천 및 재생
+![image](https://github.com/user-attachments/assets/0dd4f05b-904f-47bd-9812-74f935ef52bb)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 음악 재생 목록 및 선택
+![image](https://github.com/user-attachments/assets/72848004-d4e0-4b0f-9f30-3d8dbd0cb347)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 음악 검색 및 추가하기
+![image](https://github.com/user-attachments/assets/4edda7a2-a129-4e3c-9002-9fbcaee28f1b)
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 로그인 처리
+![image](https://github.com/user-attachments/assets/d3e68c35-63d2-4012-ba2c-ce317249026c)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
